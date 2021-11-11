@@ -28,6 +28,6 @@ if python3 -c "import json; json.loads('${RESPONSE//[$'\t\r\n']}')['errors'][0][
 else
     echo "Error something went wrong, do you have a file called tokenfile.txt? does it have yourgithub token? does the token have ssh perms on it?"
     echo "error message"
-    python3 -c "import json; print('github says:',json.loads('${RESPONSE//[$'\t\r\n']}')['message']"
+    echo $RESPONSE
 fi
 # echo  "Authorization: token $TOKEN $JSON https://api.github.com/user/keys"
