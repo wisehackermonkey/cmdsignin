@@ -1,4 +1,6 @@
-if  test -f  "~/.ssh/id_rsa.pub"; then
+#!/bin/bash
+
+if  test -f  ~/.ssh/id_rsa.pub; then
     echo "ssh key exists"
 else
     echo "ssh key doesnt exist"
@@ -9,7 +11,7 @@ fi
 
 echo "what is your github api key?"
 read TOKEN
- 
+
 KEY=$( cat ~/.ssh/id_rsa.pub )
 TITLE=${KEY/* }
 # the '/* ' above deletes every character in $KEY up to and including the last
@@ -23,7 +25,7 @@ echo "adding your ssh key to github.com"
 RESPONSE=$(curl -H "Authorization: token $TOKEN"  --data "$JSON" https://api.github.com/user/keys )
 # echo "import json; print(json.load('${RESPONSE//[$'\t\r\n']}')['errors'][0]['message'])"
 if python3 -c "import json; json.loads('${RESPONSE//[$'\t\r\n']}')['errors'][0]['message']";then
-    
+
     echo "You Aready have that key added to your account!"
     python3 -c "import json; print('github says:',json.loads('${RESPONSE//[$'\t\r\n']}')['errors'][0]['message'])"
     exit
