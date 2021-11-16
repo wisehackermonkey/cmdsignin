@@ -1,14 +1,15 @@
 if  test -f  ~/.ssh/id_rsa.pub; then
-    echo "key exists"
+    echo "ssh key exists"
 else
-    echo "key doesnt exist"
+    echo "ssh key doesnt exist"
     echo "what is your email?"
     read email
-    echo "what is your github api key?"
-    read TOKEN
     ssh-keygen -t rsa -C $email -f ~/.ssh/id_rsa -P ""
-    
 fi
+
+echo "what is your github api key?"
+read TOKEN
+ 
 KEY=$( cat ~/.ssh/id_rsa.pub )
 TITLE=${KEY/* }
 # the '/* ' above deletes every character in $KEY up to and including the last
