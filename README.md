@@ -1,13 +1,15 @@
-useage 
+# useage 
+# paste the following into the server you want to get setup with github signin
+# it will ask for your email and api key 
+```bash
+curl https://wisehackermonkey.github.io/cmdsignin/github_login.sh > cmdsignin.sh && bash cmdsignin.sh && rm cmdsignin.sh
+```
+or 
+```bash
 curl https://raw.githubusercontent.com/wisehackermonkey/cmdsignin/master/github_login.sh > cmdsignin.sh && bash cmdsignin.sh && rm cmdsignin.sh
+```
 
-
-bash github_login.sh
-
-
-```sh
-TOKEN=$( cat ./tokenfile.txt )
-git clone "https://$TOKEN@github.com/wisehackermonkey/happenings-events-test-automation.git"
-``
-
-curl https://raw.githubusercontent.com/wisehackermonkey/cmdsignin/master/github_login.sh | bash
+```
+created by oran c
+20211116
+```
