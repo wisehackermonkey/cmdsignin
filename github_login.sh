@@ -1,4 +1,4 @@
-if  test -f  ~/.ssh/id_rsa.pub; then
+if  test -f  "~/.ssh/id_rsa.pub"; then
     echo "ssh key exists"
 else
     echo "ssh key doesnt exist"
