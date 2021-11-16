@@ -4,7 +4,8 @@ else
     echo "key doesnt exist"
     echo "what is your email?"
     read email
-    
+    echo "what is your github api key?"
+    read TOKEN
     ssh-keygen -t rsa -C $email -f ~/.ssh/id_rsa -P ""
     
 fi
@@ -15,7 +16,7 @@ TITLE=${KEY/* }
 
 JSON=$( printf '{"title": "%s", "key": "%s"}' "$TITLE" "$KEY" )
 
-TOKEN=$( cat ./tokenfile.txt )
+# TOKEN=$( cat ./tokenfile.txt )
 
 echo "adding your ssh key to github.com"
 RESPONSE=$(curl -H "Authorization: token $TOKEN"  --data "$JSON" https://api.github.com/user/keys )
@@ -26,7 +27,7 @@ if python3 -c "import json; json.loads('${RESPONSE//[$'\t\r\n']}')['errors'][0][
     python3 -c "import json; print('github says:',json.loads('${RESPONSE//[$'\t\r\n']}')['errors'][0]['message'])"
     exit
 else
-    echo "Error something went wrong, do you have a file called tokenfile.txt? does it have yourgithub token? does the token have ssh perms on it?"
+#     echo "Error something went wrong, do you have a file called tokenfile.txt? does it have yourgithub token? does the token have ssh perms on it?"
     echo "error message"
     echo $RESPONSE
 fi
